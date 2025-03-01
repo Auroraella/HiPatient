@@ -2,6 +2,7 @@
 
 import {
   FormControl,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   FormDescription,
   FormField,
   FormItem,
@@ -13,6 +14,9 @@ import { Control } from "react-hook-form";
 import Image from "next/image";
 import { FormFieldType } from "../forms/PatientForm";
 import React from "react";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
+
 interface CustomProps {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   control: Control<any>;
@@ -58,6 +62,20 @@ const RenderField = ({ field, props }: { field: any; props: CustomProps }) => {
         </div>
       );
 
+    case FormFieldType.PHONE_INPUT:
+      return (
+        <FormControl>
+          <PhoneInput
+            defaultCountry="AU"
+            placeholder={placeholder}
+            international
+            withCountryCallingCode
+            value={field.value as E164Number | undefined}
+            onChange={field.onChange}
+            className="input-phone"
+          />
+        </FormControl>
+      );
       break;
 
     default:
