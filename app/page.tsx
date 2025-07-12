@@ -1,4 +1,3 @@
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import PatientForm from "@/components/forms/PatientForm";
 import Image from "next/image";
 import Link from "next/link";
@@ -26,11 +25,8 @@ export default function Home() {
             <Link href="/?admin=true" className="text-green-500">
               Admin
             </Link>
-
           </div>
-
         </div>
-
       </section>
 
       <Image
