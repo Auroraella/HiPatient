@@ -2,12 +2,13 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+import { useState } from "react";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Form } from "@/components/ui/form";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Input } from "@/components/ui/input";
 import CustomFormField from "../ui/CustomFormField";
+import SubmitButton from "../ui/SubmitButton";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -32,6 +33,7 @@ const formSchema = z.object({
 });
 
 const PatientForm = () => {
+  const [isLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,7 +45,7 @@ const PatientForm = () => {
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+    // This will be type-safe and validated.
     console.log(values);
   }
 
@@ -85,7 +87,7 @@ const PatientForm = () => {
           iconAlt="user"
         />
 
-        <Button type="submit">Submit</Button>
+        <SubmitButton isLoading={isLoading}>Get Started</SubmitButton>
       </form>
     </Form>
   );

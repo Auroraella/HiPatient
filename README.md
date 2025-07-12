@@ -1,36 +1,57 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🏥 HiPatient - Healthcare Management System
 
-## Getting Started
+**HiPatient** is a modern, responsive healthcare management platform designed for physiotherapy and medical practices. Built with cutting-edge web technologies, it provides an intuitive interface for patient registration, appointment scheduling, and healthcare administration.
 
-First, run the development server:
+## Project Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+HiPatient is a **physiotherapy care management system** that streamlines the patient onboarding process and healthcare administration. The application features a clean, modern UI with dark theme support and is designed to enhance the patient experience from initial registration to appointment scheduling.
+
+### Key Features
+
+- **Patient Registration**: Streamlined patient onboarding with form validation
+- **Appointment Scheduling**: Book and manage appointments efficiently
+- **Admin Panel**: Healthcare provider administration interface
+- **Dark/Light Theme**: Customizable theme preferences
+- **Responsive Design**: Mobile-first design for all devices
+- **Form Validation**: Robust client-side validation with Zod
+- **International Phone Support**: Global phone number formatting
+- **Accessibility**: WCAG compliant with proper ARIA labels
+
+## Tech Stack
+
+### Frontend Framework
+
+- **[Next.js 15.1.7](https://nextjs.org/)** - React framework with App Router
+- **[React 19.0.0](https://reactjs.org/)** - Latest React with concurrent features
+- **[TypeScript 5.7.3](https://www.typescriptlang.org/)** - Type-safe development
+
+## Architecture Overview
+
+### Frontend Architecture
+
+```
+HiPatient/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx         # Root layout with theme provider
+│   ├── page.tsx          # Homepage with patient form
+│   └── globals.css       # Global styles and CSS variables
+├── components/            # Reusable React components
+│   ├── forms/            # Form components
+│   │   └── PatientForm.tsx
+│   └── ui/               # shadcn/ui components
+│       ├── button.tsx
+│       ├── form.tsx
+│       ├── input.tsx
+│       └── CustomFormField.tsx
+├── lib/                  # Utility functions
+│   └── utils.ts         # Helper functions
+└── public/              # Static assets
+    └── assets/          # Images and icons
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Component Structure
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- **PatientForm**: Main registration form with validation
+- **CustomFormField**: Reusable form field component supporting various input types
+- **UI Components**: shadcn/ui based design system components
+- **Theme Provider**: Dark/light mode theme management
