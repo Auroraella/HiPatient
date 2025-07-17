@@ -2,6 +2,7 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
+// import { useRouter } from "next/navigation"; // Uncomment when navigation is needed
 import { useState } from "react";
 import { z } from "zod";
 import { Form } from "@/components/ui/form";
@@ -33,7 +34,8 @@ const formSchema = z.object({
 });
 
 const PatientForm = () => {
-  const [isLoading] = useState(false);
+  // const router = useRouter(); // Uncomment when navigation is needed
+  const [isLoading, setIsLoading] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -43,11 +45,27 @@ const PatientForm = () => {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // This will be type-safe and validated.
-    console.log(values);
-  }
+  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+    setIsLoading(true);
+
+    try {
+      // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+
+      console.log("Form submitted:", values);
+
+      // Reset form after successful submission
+      form.reset();
+
+      // Show success message or redirect
+      alert("Patient registered successfully!");
+    } catch (error) {
+      console.log(error);
+      alert("Error registering patient. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   return (
     <Form {...form}>
