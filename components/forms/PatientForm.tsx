@@ -4,12 +4,12 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 // import { useRouter } from "next/navigation"; // Uncomment when navigation is needed
 import { useState } from "react";
-import { z } from "zod";
 import { Form } from "@/components/ui/form";
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import { Input } from "@/components/ui/input";
 import CustomFormField from "../ui/CustomFormField";
 import SubmitButton from "../ui/SubmitButton";
+import { UserFormValidation, UserFormData } from "@/lib/validation";
 
 export enum FormFieldType {
   INPUT = "input",
@@ -21,23 +21,11 @@ export enum FormFieldType {
   SKELETON = "skeleton",
 }
 
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  phone: z.string().min(10, {
-    message: "Phone number must be at least 10 digits.",
-  }),
-});
-
 const PatientForm = () => {
   // const router = useRouter(); // Uncomment when navigation is needed
   const [isLoading, setIsLoading] = useState(false);
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
+  const form = useForm<UserFormData>({
+    resolver: zodResolver(UserFormValidation),
     defaultValues: {
       name: "",
       email: "",
@@ -45,7 +33,7 @@ const PatientForm = () => {
     },
   });
 
-  const onSubmit = async (values: z.infer<typeof formSchema>) => {
+  const onSubmit = async (values: UserFormData) => {
     setIsLoading(true);
 
     try {
@@ -71,8 +59,8 @@ const PatientForm = () => {
     <Form {...form}>
       <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6 flex-1">
         <section className="mb-12 space-y-4">
-          <h1 className="header">Hi there!</h1>
-          <p className="text-dark-700">Schedule your first appointment</p>
+          <h1 className="header">Hi there 👋</h1>
+          <p className="text-dark-700">Get started with appointments.</p>
         </section>
 
         <CustomFormField
